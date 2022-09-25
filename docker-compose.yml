@@ -1,0 +1,46 @@
+version: '3.7'
+services:  
+  php:
+    build: .
+    restart: always
+    ports:
+      - 8000:80
+    volumes:
+      - ./backend:/var/www/html
+    links:
+      - db
+    environment:
+      - TZ=America/Sao_Paulo
+  angular-service:
+    build: 
+      context: ./
+      dockerfile: web.dockerfile 
+    restart: unless-stopped
+    ports:
+    - 80:80  
+    working_dir: /dist/src/app
+    volumes:
+    - ./frontend:/dist/src/app
+    - '/dist/src/app/node_modules'
+    links:
+      - php
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+  db:
+    image: mysql:5.7
+    restart: always
+    ports: 
+      - "3306:3306"
+    volumes:
+      - /var/lib/mysql
+    command: --max_allowed_packet=2048M
+    environment:
+      MYSQL_DATABASE: 'novaiko'
+      MYSQL_USER: "novaiko_usr"
+      MYSQL_PASSWORD: "user@novaiko"
+      MYSQL_ROOT_PASSWORD: "root@novaiko"
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080

@@ -1,0 +1,9 @@
+frontend/dist
+.git
+.editorconfig
+/.vscode/*
+frontend/node_modules
+frontend/e2e
+frontend/docs
+.gitignore
+*.zip
