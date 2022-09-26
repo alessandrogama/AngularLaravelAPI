@@ -16,9 +16,6 @@ $ docker-compose run --rm php composer install
 # generate key
 $ docker-compose run --rm php php artisan key:generate
 
-# generate jwt secret
-$ docker-compose run --rm php php artisan jwt:secret
-
 # run database migration and seed
 $ docker-compose run --rm php php artisan migrate:refresh --seed
 
