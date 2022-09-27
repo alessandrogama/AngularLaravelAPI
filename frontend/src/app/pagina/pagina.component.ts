@@ -17,14 +17,19 @@ export class PaginaComponent implements OnInit {
   public apiGreeting = '';
   public apiDate = '';
   public text = '';
+  public loading = false;
+
+
 
   constructor(
     private apiService: ApiService
   ) { }
 
   ngOnInit(): void {
+    this.loading = true;
     this.apiService.getHello().pipe(
       catchError((err) => {
+        this.loading = false;
         this.apiGreeting = 'Falha na comunicação com o servidor.';
         return [];
       })
@@ -32,6 +37,7 @@ export class PaginaComponent implements OnInit {
       if (response) {
         this.apiGreeting = response.mensagem;
       }
+      this.loading = false;
     });
     this.apiService.getDate().pipe(
       catchError((err) => {
@@ -45,8 +51,10 @@ export class PaginaComponent implements OnInit {
     });
   }
   onSubmit(form: NgForm) {
+    this.loading = true;
     this.apiService.sendInput(form.value).pipe(
       catchError((err) => {
+        this.loading = false;
         this.text = 'Falha na comunicação com o servidor.';
         return [];
       })
@@ -54,6 +62,7 @@ export class PaginaComponent implements OnInit {
       if (response) {
         this.text = response;
       }
+      this.loading = false;
     });
   }
 

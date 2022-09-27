@@ -150,12 +150,13 @@ table, td { color: #000000; }
   
  </div>
   </div>
-  <p style="font-size: 14px; line-height: 140%; text-align: center;">{{ apiGreeting }}</p>
+  <p style="font-size: 14px;line-height: 200px;text-align: center;">{{ apiGreeting }}</p>
   <p style="font-size: 14px; line-height: 140%; text-align: center;">{{ apiDate }}</p>
+  <br/>
   <form #textForm="ngForm" (ngSubmit)="onSubmit(textForm)">
-    <div><input type="text" name="textInput" ngModel  #textInput="ngModel"  required placeholder="Digite aqui..." required/></div>
-
-    <button>ENVIAR</button>
+    <div><input type="text" style=" position: relative; left: 17%;" name="textInput" ngModel  #textInput="ngModel"  required placeholder="Digite aqui..." required/></div>
+    <br>    
+    <button style=" position: relative; left: 41%;">ENVIAR</button>
   </form>
     <p style="font-size: 14px; line-height: 140%; text-align: center;">{{text}}</p>
 </div>
@@ -166,3 +167,13 @@ table, td { color: #000000; }
   </tr>
 </tbody>
 </table>
+<ng-template #customLoadingTemplate>
+  <div class="custom-class">
+    <h3>Loading...</h3>
+  </div>
+</ng-template>
+<ngx-loading
+[show]="loading"
+[config]="{ backdropBorderRadius: '3px' }"
+[template]="customLoadingTemplate"
+></ngx-loading>

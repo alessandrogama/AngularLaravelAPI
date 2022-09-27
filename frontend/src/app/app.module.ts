@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { PaginaComponent } from './pagina/pagina.component';
 import { StartComponent } from './start/start.component';
 import {FormsModule} from '@angular/forms';
+import { NgxLoadingModule } from "ngx-loading";
 
 @NgModule({
   declarations: [
@@ -18,7 +19,9 @@ import {FormsModule} from '@angular/forms';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    NgxLoadingModule.forRoot({}),
+
   ],
   providers: [],
   bootstrap: [AppComponent]
