@@ -17,6 +17,11 @@ const routes: Routes = [
     path: '',
     pathMatch: 'full',
     redirectTo: 'pagina'
+  },
+  {
+    path: 'start',
+    pathMatch: 'full',
+    redirectTo: 'start'
   }
 ];
 
